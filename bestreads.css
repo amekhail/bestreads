@@ -41,10 +41,12 @@ p {
 
 */
 
-p img {
+img {
 	width: 150px;
 	height: 220px;
 	float: left;
+	margin-right: 20px;
+	margin-bottom: 50px;
 	/* display: block;
 	margin: auto; */
 }

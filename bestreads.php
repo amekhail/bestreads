@@ -8,11 +8,12 @@ if(empty($_GET)){
 }
 else {
     $book = $_GET['book'];
-    echoInformation($book);
+    $bookArray = glob ( './books/*' );
+    echoInformation($bookArray[$book]);
 }
 
 function echoInformation($book) {
-    $img = "<p><img src='" . $book . "/cover.jpg'" . "alt='not found'></p>";
+    $img = "<img src='" . $book . "/cover.jpg'" . "alt='not found'>";
     
     $bookDesc = file($book . "/description.txt");
     $bookInfo = file($book . "/info.txt");

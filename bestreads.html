@@ -31,7 +31,7 @@ function showAll() {
 		   var bookArray = JSON.parse(ajax.responseText);
 		   var booksPrinted = "";
 		   for (var i = 0; i < bookArray.length; i++) {
-			booksPrinted += "<p class='onebook' onclick='getInfo(this)' id='" + bookArray[i] + "'>";
+			booksPrinted += "<p class='onebook' onclick='getInfo(this)' id='" + i + "'>";
 			booksPrinted += "<img src='" + bookArray[i] + "/cover.jpg'" + "alt='not found'></p>";
 		   }
 		   toChange.innerHTML = booksPrinted;
