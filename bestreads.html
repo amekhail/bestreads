@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<!-- CSC 337: Assignment BestReads -->
+<!-- Adam Mekhail -->
+<head>
+<link rel="stylesheet" type="text/css" href="bestreads.css" />
+<!-- You will need to add a CSS rule in this file to style the <p>s holding the images -->
+<title>Best Reads</title>
+</head>
+<body onload="showAll()">
+
+<div id="header">
+<div>
+	<span>bestreads</span>
+</div>
+<span id="back" onclick="showAll()">home</span>
+</div>
+
+<div id="allImages"></div>
+
+
+<script>
+// Adam Mekhail
+var toChange = document.getElementById("allImages");
+function showAll() {
+   var ajax = new XMLHttpRequest();
+   ajax.open("GET", "bestreads.php");
+   ajax.send();
+   ajax.onreadystatechange = function () {
+	   if (ajax.readyState == 4 && ajax.status == 200) {
+		   var bookArray = JSON.parse(ajax.responseText);
+		   var booksPrinted = "";
+		   for (var i = 0; i < bookArray.length; i++) {
+			booksPrinted += "<p class='onebook' onclick='getInfo(this)' id='" + bookArray[i] + "'>";
+			booksPrinted += "<img src='" + bookArray[i] + "/cover.jpg'" + "alt='not found'></p>";
+		   }
+		   toChange.innerHTML = booksPrinted;
+	   } 
+   }		 
+}
+
+function getInfo(elem) {
+	var queryParamValue = elem.id;
+	var ajax = new XMLHttpRequest();
+   	ajax.open("GET", "bestreads.php?book=" + queryParamValue);
+	ajax.send();
+	ajax.onreadystatechange = function () {
+		if (ajax.readyState === 4 && ajax.status === 200) {
+			var bookText = (ajax.responseText);
+			toChange.innerHTML = bookText;
+		}
+	}
+}
+
+</script>
+</body>
+</html>
