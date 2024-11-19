@@ -3,7 +3,7 @@
 if(empty($_GET)){
     // File name: bestreads.php
     $bookArray = glob ( './books/*' );
-    // print_r($bookArray);
+    print_r($bookArray);
     echo json_encode ( $bookArray );
 }
 else {
